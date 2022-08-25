@@ -3,6 +3,7 @@ package com.kcbgroup.validationexample.service;
 
 import com.kcbgroup.validationexample.dto.UserRequest;
 import com.kcbgroup.validationexample.entity.User;
+import com.kcbgroup.validationexample.exception.UserNotFoundException;
 import com.kcbgroup.validationexample.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,12 @@ public class UserService {
     public List<User> getAllUsers(){
         return repository.findAll();
     }
-    public User getUser(int id){
-        return repository.findByUserId(id);
+    public User getUser(int id) throws UserNotFoundException {
+        User user = repository.findByUserId(id);
+        if (user!=null){
+            return user;
+        }else{
+            throw new UserNotFoundException("User With Id " +id +" is not found") ;
+        }
     }
 }
