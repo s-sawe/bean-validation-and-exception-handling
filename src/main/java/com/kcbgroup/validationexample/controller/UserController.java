@@ -28,6 +28,7 @@ public class UserController {
 
     @GetMapping("/fetchAll")
     public ResponseEntity<List<User>> getAllUsers(){
+
         return ResponseEntity.ok(service.getAllUsers());
     }
 

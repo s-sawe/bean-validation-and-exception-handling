@@ -1,4 +1,4 @@
-package com.kcbgroup.validationexample.advice;
+package com.kcbgroup.validationexample.exception;
 
 import com.kcbgroup.validationexample.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ public class AppExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex){
-        Map<String, String> errorMap=new HashMap<>();
+        Map<String, String> errorMap = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error->{
             errorMap.put(error.getField(), error.getDefaultMessage());
         });
