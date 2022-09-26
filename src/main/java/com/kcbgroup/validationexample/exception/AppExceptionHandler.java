@@ -22,7 +22,7 @@ public class AppExceptionHandler {
       return errorMap;
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
     public Map<String, String> handleBusinessException(UserNotFoundException ex){
         Map<String, String> errorMap=new HashMap<>();
